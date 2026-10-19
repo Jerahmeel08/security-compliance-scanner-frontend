@@ -20,6 +20,14 @@ export default function OrganizationDetails() {
 
   const isActive = organization.status === 'Active';
 
+  function copyCode() {
+    const code = organization.joinCode;
+    if (!code || !navigator.clipboard) return;
+    navigator.clipboard.writeText(code)
+      .then(() => toast('Organization code copied'))
+      .catch(() => toast('Could not copy the code.'));
+  }
+
   async function confirm() {
     setBusy(true);
     try {
@@ -52,19 +60,36 @@ export default function OrganizationDetails() {
           {chip(organization.status, isActive ? 'ok' : 'danger')}
         </div>
         <dl className="detail-grid">
-          <div><dt>Members</dt><dd>{organization.memberCount}</dd></div>
-          <div><dt>Applications</dt><dd>{organization.applicationCount}</dd></div>
+          <div><dt>Members</dt><dd className="stat-num">{organization.memberCount}</dd></div>
+          <div><dt>Applications</dt><dd className="stat-num">{organization.applicationCount}</dd></div>
           <div><dt>Created</dt><dd>{organization.createdDate}</dd></div>
-          <div><dt>Join code</dt><dd>{organization.joinCode || '—'}</dd></div>
+          <div>
+            <dt>Join code</dt>
+            <dd className="acct__code">
+              <span>{organization.joinCode || '—'}</span>
+              {organization.joinCode && (
+                <button type="button" className="acct__copy" onClick={copyCode} aria-label="Copy join code">
+                  <Icon name="copy" size={14} />
+                </button>
+              )}
+            </dd>
+          </div>
         </dl>
-        {isActive
-          ? <p className="muted">Suspending will block state-changing actions across the organization, including approving join requests and updating finding statuses. Members can still log in and view read-only information.</p>
-          : <p className="muted">Reactivating restores state-changing actions for this organization's members.</p>}
-        <div className="actions row" style={{ justifyContent: 'flex-start' }}>
-          <button type="button" className={`btn${isActive ? ' btn--danger' : ''}`} disabled={busy} onClick={() => confirmRef.current?.open()}>
-            {isActive ? 'Suspend Organization' : 'Reactivate Organization'}
-          </button>
-        </div>
+        {isActive ? (
+          <div className="danger-zone">
+            <p className="muted">Suspending will block state-changing actions across the organization, including approving join requests and updating finding statuses. Members can still log in and view read-only information.</p>
+            <div className="actions row" style={{ justifyContent: 'flex-start' }}>
+              <button type="button" className="btn btn--danger" disabled={busy} onClick={() => confirmRef.current?.open()}>Suspend Organization</button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <p className="muted">Reactivating restores state-changing actions for this organization's members.</p>
+            <div className="actions row" style={{ justifyContent: 'flex-start' }}>
+              <button type="button" className="btn" disabled={busy} onClick={() => confirmRef.current?.open()}>Reactivate Organization</button>
+            </div>
+          </>
+        )}
       </div>
 
       <ConfirmDialog

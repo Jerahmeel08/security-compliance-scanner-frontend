@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Icon from '../../components/Icon.jsx';
+import './ApplicationManagementAdminTabs.css';
 import Pagination from '../../components/Pagination.jsx';
 import { statusChip } from '../../components/chips.jsx';
 import { usePagination } from '../../hooks/usePagination.js';
@@ -22,9 +24,9 @@ export default function ApplicationManagementAdmin() {
 
   return (
     <>
-      <div className="tabs" role="tablist" aria-label="Application management">
-        <button className="tab-btn" role="tab" aria-selected={isQueue} onClick={() => setTab('queue')}>Authorization Queue{queue.length ? ` (${queue.length})` : ''}</button>
-        <button className="tab-btn" role="tab" aria-selected={!isQueue} onClick={() => setTab('overview')}>Application Overview</button>
+      <div className="tabs admin-application-tabs" role="tablist" aria-label="Application management">
+        <button type="button" className="tab-btn" role="tab" aria-selected={isQueue} onClick={() => setTab('queue')}><Icon name="clock" size={20} />Authorization Queue{queue.length ? ` (${queue.length})` : ''}</button>
+        <button type="button" className="tab-btn" role="tab" aria-selected={!isQueue} onClick={() => setTab('overview')}><Icon name="apps" size={20} />Application Overview</button>
       </div>
 
       {isQueue ? (

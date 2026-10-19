@@ -25,6 +25,7 @@ export default function AppShell() {
   if (!bootstrapped) return null;
   if (!user) return <Navigate to="/signin" replace />;
   if (isAdmin) return <Navigate to="/admin" replace />;
+  if (!user.role || !user.orgId) return <Navigate to="/organization-access" replace />;
 
   const isOwner = user.role !== 'Developer';
   const side = isOwner ? SIDE : SIDE_DEVELOPER;

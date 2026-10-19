@@ -1,0 +1,13 @@
+/* Local, accessible lockout feedback for the sign-in screen only. */
+.signin-cooldown {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 196, 115, 0.5);
+  border-radius: 10px;
+  background: rgba(255, 196, 115, 0.1);
+  color: #ffe2bb;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.signin-cooldown > strong { display: block; margin-bottom: 4px; }
+.signin-cooldown p { margin-top: 5px; }

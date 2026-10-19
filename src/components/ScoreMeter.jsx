@@ -19,7 +19,7 @@ export default function ScoreMeter({ score, size = 100, label = 'score' }) {
   return (
     <div className="scoremeter" style={{ width: size, height: size }} role="img" aria-label={`${label}: ${score} out of 100`}>
       <svg viewBox={`0 0 ${size} ${size}`} width={size} height={size} aria-hidden="true">
-        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="#eceef5" strokeWidth={stroke} />
+        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="rgba(255,255,255,.12)" strokeWidth={stroke} />
         <circle
           cx={size / 2} cy={size / 2} r={r} fill="none" stroke={`var(${varName})`} strokeWidth={stroke}
           strokeLinecap="round" strokeDasharray={c} strokeDashoffset={offset}

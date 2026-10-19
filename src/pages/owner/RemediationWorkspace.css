@@ -1,0 +1,113 @@
+/* Remediation workspace — intentionally scoped, no global style changes. */
+.remedy-workspace{display:flex;flex-direction:column;gap:20px;min-width:0;max-width:1360px}
+.remedy-heading{display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap}
+.remedy-heading h2{font-size:24px;font-weight:750;line-height:1.3;margin:0 0 5px}
+.remedy-heading p{font-size:14px;line-height:1.55;color:var(--ink-2);max-width:680px}
+.remedy-findings-link{flex:none;white-space:nowrap}
+.remedy-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.remedy-summary__stat{display:flex;justify-content:space-between;align-items:center;gap:12px;min-width:0;padding:15px 19px;border-radius:12px;background:var(--paper);border:1px solid var(--card-ring);border-left:3px solid var(--warn)}
+.remedy-summary__stat--progress{border-left-color:var(--info)}
+.remedy-summary__stat--resolved{border-left-color:var(--ok)}
+.remedy-summary__stat span{font-weight:650;font-size:14px;line-height:1.4}
+.remedy-summary__stat strong{font-size:27px;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.remedy-reviewed{font-size:13px;line-height:1.5;color:var(--ink-2);margin-top:-8px}
+.remedy-reviewed button{background:none;border:0;padding:0 2px;cursor:pointer;color:var(--info);font:inherit;text-decoration:underline;text-underline-offset:3px}
+.remedy-filters{display:flex;justify-content:space-between;align-items:center;gap:12px 16px;flex-wrap:wrap}
+.remedy-filters__tabs,.remedy-filters__fields{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}
+.remedy-filter{font-size:14px;font-weight:650;padding:9px 15px;color:var(--ink);cursor:pointer;border:1px solid var(--rule);background:transparent;border-radius:9px}
+.remedy-filter:hover{background:var(--paper-hover)}
+.remedy-filter[aria-pressed="true"]{background:var(--mint);border-color:var(--mint);color:#04112e}
+.remedy-search{display:flex;gap:9px;align-items:center;min-width:270px;min-height:42px;padding:0 12px;border:1px solid var(--rule);border-radius:9px;background:var(--paper);color:var(--ink-2)}
+.remedy-search:focus-within{border-color:var(--info)}
+.remedy-search input{width:100%;min-width:0;background:transparent;color:var(--ink);border:0;outline:0;font-size:14px}
+.remedy-search input::placeholder{color:var(--ink-2)}
+.remedy-severity.sel{margin:0;min-height:42px;width:auto;min-width:150px;font-size:14px;border-radius:9px}
+.remedy-layout{display:grid;grid-template-columns:minmax(275px,0.85fr) minmax(0,1.8fr);gap:18px;align-items:start;min-width:0}
+.remedy-queue{padding:0;overflow:hidden}
+.remedy-queue__heading{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:17px 18px;border-bottom:1px solid var(--rule)}
+.remedy-queue__heading h3{font-size:16px;font-weight:700}
+.remedy-queue__heading span{font-size:12px;color:var(--ink-2)}
+.remedy-queue__list{display:flex;flex-direction:column}
+.remedy-issue{width:100%;display:flex;flex-direction:column;gap:7px;padding:15px 18px;text-align:left;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--rule);border-left:3px solid transparent;cursor:pointer}
+.remedy-issue:last-child{border-bottom:0}
+.remedy-issue:hover{background:var(--paper-hover)}
+.remedy-issue--selected{background:rgba(56,189,248,.085);border-left-color:var(--accent)}
+.remedy-issue__name,.remedy-issue__meta{display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0}
+.remedy-issue__name strong{font-weight:700;font-size:14px;line-height:1.45;min-width:0;overflow-wrap:anywhere}
+.remedy-issue__name .chip{flex:none;font-size:11px}
+.remedy-issue__meta{font-size:12px;line-height:1.35;color:var(--ink-2)}
+.remedy-issue__app{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;max-width:70%}
+.remedy-issue__status{flex:none}
+.remedy-queue .pagination{padding:11px 15px;margin:0}
+.remedy-queue .pagination__summary{font-size:12px}
+.remedy-detail{padding:24px;min-width:0;scroll-margin-top:22px}
+.remedy-detail__header{padding-bottom:18px;border-bottom:1px solid var(--rule)}
+.remedy-detail__badges{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:11px}
+.remedy-detail__header h3{font-size:23px;font-weight:730;line-height:1.35;overflow-wrap:anywhere}
+.remedy-detail__meta{color:var(--ink-2);font-size:13px;margin-top:5px;overflow-wrap:anywhere}
+.remedy-detail__block{padding-top:20px}
+.remedy-detail__block+.remedy-detail__block{margin-top:20px;border-top:1px solid var(--rule)}
+.remedy-detail h4{font-size:15px;line-height:1.35;font-weight:750;margin-bottom:9px}
+.remedy-detail__block p{font-size:14px;line-height:1.65;color:var(--ink-2);overflow-wrap:anywhere}
+.remedy-endpoint{margin-top:12px}
+.remedy-endpoint code{font-size:12px;overflow-wrap:anywhere;white-space:normal}
+.remedy-guidance{white-space:pre-line}
+.remedy-guidance+.remedy-guidance{margin-top:12px}
+.remedy-guidance--missing{font-style:italic}
+.remedy-link{display:inline-flex;align-items:center;gap:6px;margin-top:13px;color:var(--info);font-size:13px;font-weight:650;text-underline-offset:3px}
+.remedy-verify{display:flex;justify-content:space-between;align-items:center;gap:14px 20px;margin-top:22px;padding:17px 18px;background:rgba(56,189,248,.045);border:1px solid var(--rule);border-radius:10px}
+.remedy-verify h4{margin:0 0 6px}
+.remedy-verify p{font-size:13px;color:var(--ink-2);line-height:1.55}
+.remedy-verify .remedy-verify__note{margin-top:10px}
+.remedy-verify__link{flex:none;font-size:13px;white-space:nowrap}
+.remedy-status-area{padding-top:22px;margin-top:22px;border-top:1px solid var(--rule)}
+.remedy-status-area h4{margin-bottom:7px}
+.remedy-status-area form{display:flex;flex-direction:column;gap:11px}
+.remedy-status-area form>p{font-size:13px;color:var(--ink-2);line-height:1.55}
+.remedy-status-area label{font-size:13px;font-weight:650}
+.remedy-status-area__controls{display:flex;align-items:stretch;gap:10px}
+.remedy-status-area select,.remedy-status-area textarea{color:var(--ink);background:var(--paper-hover);border:1px solid var(--rule);border-radius:9px;font-size:14px;padding:10px 12px}
+.remedy-status-area select{min-width:0;flex:1}
+.remedy-status-area select option{background:var(--paper)}
+.remedy-status-area textarea{width:100%;resize:vertical;min-height:92px}
+.remedy-save{flex:none;white-space:nowrap;min-width:116px}
+.remedy-reason{display:flex;flex-direction:column;gap:7px}
+.remedy-reason span{color:var(--danger)}
+.remedy-error{color:#ffb3c0!important;font-size:13px!important}
+.remedy-status-area__readonly{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:var(--ok);line-height:1.6}
+.remedy-status-area__readonly .ico{flex:none}
+.remedy-empty{text-align:center;padding:46px 24px;display:flex;align-items:center;flex-direction:column;gap:12px}
+.remedy-empty>.ico{color:var(--info)}
+.remedy-empty h3{font-size:18px}
+.remedy-empty p{font-size:14px;max-width:430px;color:var(--ink-2)}
+.remedy-workspace button:focus-visible,.remedy-workspace a:focus-visible,.remedy-workspace select:focus-visible,.remedy-workspace textarea:focus-visible{outline:2px solid var(--info);outline-offset:3px}
+@media(max-width:1150px){
+ .remedy-layout{grid-template-columns:minmax(240px,.8fr) minmax(0,1.6fr)}
+ .remedy-detail{padding:20px}
+ .remedy-verify{flex-wrap:wrap}
+}
+@media(max-width:920px){
+ .remedy-layout{grid-template-columns:minmax(0,1fr)}
+ .remedy-queue__list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+ .remedy-issue:nth-child(odd){border-right:1px solid var(--rule)}
+}
+@media(max-width:600px){
+ .remedy-workspace{gap:17px}
+ .remedy-heading h2{font-size:21px}
+ .remedy-heading .btn{width:100%}
+ .remedy-summary{gap:8px}
+ .remedy-summary__stat{padding:12px 10px;flex-direction:column-reverse;gap:5px;text-align:center}
+ .remedy-summary__stat span{font-size:12px}
+ .remedy-summary__stat strong{font-size:24px}
+ .remedy-filters__tabs{width:100%}
+ .remedy-filter{flex:1;padding:9px 7px}
+ .remedy-filters__fields{width:100%}
+ .remedy-search{min-width:190px;flex:1}
+ .remedy-severity.sel{flex:1;min-width:125px}
+ .remedy-queue__list{display:flex}
+ .remedy-issue:nth-child(odd){border-right:0}
+ .remedy-detail{padding:17px}
+ .remedy-detail__header h3{font-size:20px}
+ .remedy-status-area__controls{flex-direction:column}
+ .remedy-save{width:100%}
+}

@@ -6,6 +6,8 @@ import { ToastProvider } from './context/ToastContext.jsx';
 import Landing from './pages/auth/Landing.jsx';
 import Signin from './pages/auth/Signin.jsx';
 import Signup from './pages/auth/Signup.jsx';
+import ResetPassword from './pages/auth/ResetPassword.jsx';
+import OrganizationAccess from './pages/auth/OrganizationAccess.jsx';
 
 import AppShell from './pages/owner/AppShell.jsx';
 import Overview from './pages/owner/Overview.jsx';
@@ -46,6 +48,8 @@ export default function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/signin" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/organization-access" element={<OrganizationAccess />} />
 
             <Route path="/app" element={<AppShell />}>
               <Route index element={<Navigate to="overview" replace />} />

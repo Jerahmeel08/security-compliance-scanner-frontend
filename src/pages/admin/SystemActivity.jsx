@@ -36,7 +36,7 @@ export default function SystemActivity() {
           <>
             <div className="tblwrap">
               <table className="tbl">
-                <thead><tr><th>Timestamp</th><th>Actor</th><th>Action</th><th>Target</th><th>Details</th></tr></thead>
+                <thead><tr><th>Timestamp</th><th>Actor</th><th>Action</th><th>Target</th></tr></thead>
                 <tbody>
                   {pageItems.map(l => (
                     <tr key={l.id}>
@@ -44,7 +44,6 @@ export default function SystemActivity() {
                       <td className="lead" data-label="Actor">{l.actor}</td>
                       <td data-label="Action">{chip(l.action, l.actor === 'System' ? 'info' : 'ok')}</td>
                       <td data-label="Target">{l.target}</td>
-                      <td data-label="Details">{l.details || '—'}</td>
                     </tr>
                   ))}
                 </tbody>

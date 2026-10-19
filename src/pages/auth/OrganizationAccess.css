@@ -1,0 +1,19 @@
+/* Scoped to the existing navy authentication layout. */
+.organization-access { max-width: 760px; }
+.organization-access__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 26px; }
+.organization-access__top h1 { font-size: clamp(25px, 4vw, 32px); margin: 8px 0; }
+.organization-access__eyebrow { color: #87b7ff; font-size: 13px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.organization-access__subtitle { color: var(--muted); font-size: 14px; overflow-wrap: anywhere; }
+.organization-access__status { background: var(--paper); border: 1px solid var(--rule); border-left: 4px solid var(--accent); border-radius: 10px; padding: 18px 20px; line-height: 1.6; }
+.organization-access__status-heading { font-weight: 700; font-size: 17px; margin-bottom: 4px; }
+.organization-access__form { margin-top: 26px; }
+.organization-access__form .field input { min-height: 54px; }
+.organization-access__hint { color: var(--muted); font-size: 14px; margin: 0 0 22px; }
+.organization-access__notice { color: #a4ffde; font-size: 14px; margin-top: 16px; }
+.organization-access__error { color: #ffb3bf; font-size: 14px; margin-top: 16px; }
+.organization-access__footer { display: flex; justify-content: flex-end; margin-top: 24px; }
+@media (max-width: 520px) {
+  .organization-access__top { flex-direction: column; }
+  .organization-access__top .btn, .organization-access__footer .btn { width: 100%; }
+  .organization-access__footer { display: block; }
+}

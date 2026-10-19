@@ -1,0 +1,37 @@
+/* Findings-only refinement; keeps the dashboard's existing theme and chips. */
+.findings-toolbar {
+  column-gap: 16px;
+  row-gap: 12px;
+}
+
+.findings-toolbar .findings-toolbar__search {
+  flex: 1 1 250px;
+  min-width: 210px;
+  max-width: 380px;
+}
+
+.findings-toolbar .sel {
+  flex: 0 0 auto;
+}
+
+.findings-table th:first-child,
+.findings-table td:first-child {
+  width: 138px;
+  white-space: nowrap;
+}
+
+.findings-table__short-id {
+  color: var(--ink-2);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  cursor: help;
+}
+
+@media (max-width: 800px) {
+  .findings-toolbar .findings-toolbar__search {
+    order: 3;
+    flex: 1 1 100%;
+    max-width: none;
+  }
+}

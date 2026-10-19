@@ -1,5 +1,9 @@
 import { del, get, post } from './client.js';
 
+// Existing signed-in users without an organization can request membership.
+export const getMyJoinRequest = () => get('/organizations/join-requests/mine');
+export const requestToJoin = orgCode => post('/organizations/join-requests', { orgCode });
+
 // Owner-only. Acting user's own org is always implied (no :orgId param).
 export const listJoinRequests = () => get('/organizations/me/join-requests');
 export const approveJoinRequest = id => post(`/organizations/me/join-requests/${id}/approve`);

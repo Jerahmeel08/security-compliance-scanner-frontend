@@ -67,6 +67,7 @@ export function AppProvider({ children }) {
     setUserState(null);
     setOrgState(null);
     setOrgId(null);
+    setJoinCode(null);
     setApps([]); setAssessments([]); setFindings([]); setMembers([]); setPending([]);
     setAdminApps([]); setAuthorizationQueue([]); setOrganizations([]); setUsers([]);
     setAdminAssessments([]); setAuditLog([]);
@@ -218,17 +219,38 @@ export function AppProvider({ children }) {
 
   // --- Auth ---------------------------------------------------------------
   const login = useCallback(async (email, password) => {
-    const { user: rawUser, organization, accessToken, refreshToken, joinRequestStatus } = await authApi.login(email, password);
+    const { accessToken, refreshToken, joinRequestStatus } = await authApi.login(email, password);
     tokenStore.set({ accessToken, refreshToken });
+    // Login returns user/tokens but not organization details. Fetch /auth/me
+    // before routing so newly approved members load their org data on sign-in.
+    let profile;
+    try {
+      profile = await authApi.me();
+    } catch (err) {
+      tokenStore.clear();
+      throw err;
+    }
+    const nu = normalizeUser(profile.user);
+    setUserState(nu);
+    setOrgState(profile.organization?.name || null);
+    setOrgId(profile.organization?.id || null);
+    setJoinCode(profile.organization?.joinCode || null);
+    return { ...nu, joinRequestStatus };
+  }, []);
+
+  // Update an existing session after the Owner approves a join request.
+  const refreshCurrentUser = useCallback(async () => {
+    const { user: rawUser, organization } = await authApi.me();
     const nu = normalizeUser(rawUser);
     setUserState(nu);
     setOrgState(organization?.name || null);
     setOrgId(organization?.id || null);
     setJoinCode(organization?.joinCode || null);
-    // Only meaningful when nu.role is still null (join request pending or
-    // denied) — see Signin.jsx, which picks the right message from this.
-    return { ...nu, joinRequestStatus };
+    return nu;
   }, []);
+
+  const getMyJoinRequest = useCallback(() => orgsApi.getMyJoinRequest(), []);
+  const requestToJoin = useCallback(orgCode => orgsApi.requestToJoin(orgCode), []);
 
   const signupCreateOrg = useCallback(async fields => {
     const { user: rawUser, organization, accessToken, refreshToken } = await authApi.signupCreateOrg(fields);
@@ -322,6 +344,12 @@ export function AppProvider({ children }) {
     return m;
   }, [members, refreshMembers]);
 
+  const regenerateJoinCode = useCallback(async () => {
+    const result = await orgsApi.regenerateJoinCode();
+    setJoinCode(result.joinCode);
+    return result;
+  }, []);
+
   // --- Admin: organizations -------------------------------------------
   const suspendOrganization = useCallback(async id => {
     await adminApi.suspendOrganization(id);
@@ -351,11 +379,12 @@ export function AppProvider({ children }) {
   const value = useMemo(() => ({
     user, setUser, signOut, isAdmin, bootstrapped,
     login, signupCreateOrg, signupJoinOrg, requestPasswordReset,
+    getMyJoinRequest, requestToJoin, refreshCurrentUser,
     orgs, org, orgId, joinCode,
     apps, addApp, verifyOwnership, approveApplication, rejectApplication, revokeAuthorization,
     assessments, startScan, refreshAssessment,
     findings, updateFindingStatus, refreshFindings,
-    members, pending, approveMember, declineMember, removeMember,
+    members, pending, approveMember, declineMember, removeMember, regenerateJoinCode,
     adminApps, authorizationQueue, refreshAdminApps,
     organizations, users, adminAssessments, auditLog, systemHealth,
     refreshOrganizations, refreshUsers, refreshAdminAssessments, refreshAuditLog, refreshSystemHealth,
@@ -365,7 +394,8 @@ export function AppProvider({ children }) {
     user, isAdmin, bootstrapped, orgs, org, orgId, joinCode,
     apps, assessments, findings, members, pending,
     adminApps, authorizationQueue, organizations, users, adminAssessments, auditLog, systemHealth,
-    login, signupCreateOrg, signupJoinOrg, requestPasswordReset, addApp, verifyOwnership,
+    login, signupCreateOrg, signupJoinOrg, requestPasswordReset,
+    getMyJoinRequest, requestToJoin, refreshCurrentUser, addApp, verifyOwnership,
     approveApplication, rejectApplication, revokeAuthorization, startScan, refreshAssessment,
     updateFindingStatus, refreshFindings, approveMember, declineMember, removeMember,
     refreshAdminApps, refreshOrganizations, refreshUsers, refreshAdminAssessments, refreshAuditLog,

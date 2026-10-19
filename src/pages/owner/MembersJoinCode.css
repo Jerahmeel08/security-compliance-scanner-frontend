@@ -1,0 +1,114 @@
+/* Only the organization join-code card on the Members page. */
+.members-code-card {
+  margin-bottom: 28px;
+  padding: 24px 26px;
+  border: 1px solid rgba(82, 132, 255, .35);
+  background: linear-gradient(125deg, rgba(35, 66, 133, .19), rgba(22, 27, 53, .85) 60%);
+}
+.members-code-card__header { display: flex; gap: 15px; align-items: flex-start; }
+.members-code-card__icon {
+  display: grid; place-items: center; flex: 0 0 44px;
+  width: 44px; height: 44px; border-radius: 12px;
+  background: rgba(31, 151, 231, .17); color: #44b8ff;
+}
+.members-code-card__title { margin: 1px 0 7px; font-size: 20px; font-weight: 700; }
+.members-code-card__description { margin: 0; color: #c6cce4; line-height: 1.5; }
+.members-code-card__bottom {
+  margin-top: 22px; display: flex; flex-wrap: wrap;
+  align-items: end; justify-content: space-between; gap: 18px;
+}
+.members-code-card__code-group { display: flex; flex-direction: column; gap: 7px; }
+.members-code-card__label { font-size: 13px; color: #c6cce4; font-weight: 600; }
+.members-code-card__code {
+  display: inline-block; width: fit-content; padding: 12px 17px;
+  border: 1px solid rgba(120, 164, 255, .42); border-radius: 9px;
+  background: rgba(4, 8, 48, .6); color: #fff;
+  font-size: 23px; font-weight: 800; letter-spacing: .15em;
+  overflow-wrap: anywhere;
+}
+.members-code-card__button.btn {
+  min-height: 48px; padding: 12px 20px; display: inline-flex;
+  justify-content: center; align-items: center; gap: 10px;
+  background: #068bd4; color: #fff; border: 1px solid #23aaff;
+  border-radius: 9px; font-weight: 750;
+  box-shadow: 0 5px 16px rgba(0, 116, 209, .27);
+  transition: background .16s ease, box-shadow .16s ease;
+}
+.members-code-card__button.btn:hover:not(:disabled) {
+  background: #0877bb; box-shadow: 0 7px 20px rgba(0, 116, 209, .38);
+}
+.members-code-card__button.btn:focus-visible { outline: 3px solid #76d3ff; outline-offset: 3px; }
+.members-code-card__button.btn:disabled { opacity: .65; cursor: not-allowed; }
+@media (max-width: 600px) {
+  .members-code-card { padding: 20px 16px; }
+  .members-code-card__title { font-size: 18px; }
+  .members-code-card__bottom { align-items: stretch; }
+  .members-code-card__button.btn { width: 100%; }
+  .members-code-card__code { font-size: 20px; }
+}
+
+/* Members tabs: each tab has its own half-width area rather than a short,
+   left-clustered button. Scoped to the Members page only. */
+.members-code-card + .tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 24px;
+  width: 100%;
+  padding: 0;
+  margin: 20px 0 28px;
+  border-bottom: 0;
+}
+
+.members-code-card + .tabs .tab-btn {
+  box-sizing: border-box;
+  display: inline-flex;
+  width: 100%;
+  min-width: 0;
+  min-height: 60px;
+  padding: 14px 18px;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  white-space: normal;
+  line-height: 1.4;
+  border: 1px solid rgba(130, 153, 219, 0.27);
+  border-bottom: 3px solid transparent;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.035);
+  transition: background .16s ease, border-color .16s ease, color .16s ease;
+}
+
+.members-code-card + .tabs .tab-btn[aria-selected="true"] {
+  background: rgba(7, 142, 217, 0.12);
+  border-color: rgba(70, 156, 235, 0.4);
+  border-bottom-color: var(--accent, #078fdf);
+  color: #fff;
+}
+
+.members-code-card + .tabs .tab-btn:hover:not([aria-selected="true"]) {
+  background: rgba(255, 255, 255, 0.075);
+  color: #fff;
+}
+
+.members-code-card + .tabs .tab-btn:focus-visible {
+  outline: 3px solid #76d3ff;
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .members-code-card + .tabs {
+    column-gap: 12px;
+    margin: 18px 0 22px;
+  }
+  .members-code-card + .tabs .tab-btn {
+    min-height: 58px;
+    padding: 10px 8px;
+    gap: 7px;
+    font-size: 13px;
+  }
+  .members-code-card + .tabs .tab-btn svg {
+    flex-shrink: 0;
+  }
+}

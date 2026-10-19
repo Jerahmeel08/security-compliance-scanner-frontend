@@ -1,0 +1,26 @@
+/* Visual grouping for signup step 1 only; existing field styles stay intact. */
+.signup-section__title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 19px;
+  font-weight: 700;
+  margin: 0 0 22px;
+}
+.signup-section__title::before {
+  content: '';
+  width: 4px;
+  height: 24px;
+  flex: 0 0 4px;
+  border-radius: 4px;
+  background: #3c64ff;
+}
+.signup-section--separated {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 34px;
+  padding-top: 30px;
+}
+@media (max-width: 600px) {
+  .signup-section__title { font-size: 17px; margin-bottom: 18px; }
+  .signup-section--separated { margin-top: 26px; padding-top: 24px; }
+}
